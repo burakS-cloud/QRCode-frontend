@@ -18,7 +18,7 @@ const Record = () => {
   useEffect(() => {
     const sendParams = async () => {
       const res = await axios.post(
-        `http://localhost:3001/api/receiveParams`,
+        `${process.env.REACT_APP_API_URL}/api/receiveParams`,
         {
           qrparams: window.location.href.split("params=")[1],
         },
@@ -58,8 +58,6 @@ const Record = () => {
   let url = window.location.pathname + `/?params=1555`; // normalde qr code okununca direkt olarak pathname'e eşit olcak
 
   let qrcodeID = url.substring(16, url.length);
-  console.log("videoURL:", videoURL);
-  console.log("error:", error);
 
   // This will be the actual params
 
@@ -85,7 +83,7 @@ const Record = () => {
                 user_name: data?.name,
               });
               const response = await axios.post(
-                `http://localhost:3001/api/saveVideoQr`,
+                `${process.env.REACT_APP_API_URL}/api/saveVideoQr`,
                 {
                   file: file,
                   form: { user_email: data?.email, user_name: data?.name },
