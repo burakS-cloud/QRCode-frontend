@@ -8,7 +8,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="record" element={<Record />}></Route>
+        <Route path="/record" element={<Record />}></Route>
         <Route path="/" element={<Home />}></Route>
 
         {/* <QRCode style={{ marginLeft: "15rem" }} value="www.google.com" id="5" /> */}
