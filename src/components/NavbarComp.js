@@ -12,6 +12,7 @@ const NavbarComp = () => {
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/record">Record</Nav.Link>
+            <Nav.Link href="/dummy"></Nav.Link>
           </Nav>
         </Container>
       </Navbar>
