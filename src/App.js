@@ -2,7 +2,7 @@
 import Record from "./pages/Record";
 import Home from "./pages/Home";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
