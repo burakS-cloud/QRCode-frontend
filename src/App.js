@@ -11,7 +11,10 @@ function App() {
       <Routes>
         <Route path="/record" element={<Record />}></Route>
         <Route path="/" element={<Home />}></Route>
-        <Route path="/dummy" element={<DummyPage />}></Route>
+        <Route
+          path="https://qrcode-lp7c.onrender.com/dummy"
+          element={<DummyPage />}
+        ></Route>
 
         {/* <QRCode style={{ marginLeft: "15rem" }} value="www.google.com" id="5" /> */}
       </Routes>

@@ -12,7 +12,9 @@ const NavbarComp = () => {
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/record">Record</Nav.Link>
-            <Nav.Link href="/dummy">Dummy</Nav.Link>
+            <Nav.Link href="https://qrcode-lp7c.onrender.com/dummy">
+              Dummy
+            </Nav.Link>
           </Nav>
         </Container>
       </Navbar>
