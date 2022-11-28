@@ -16,7 +16,7 @@ import {
   usePagination,
   useRowSelect,
 } from "react-table";
-import { COLUMNS } from "./EmptyQRCodeColumns";
+import { COLUMNS } from "./EmptyQRCodeColumn";
 import { GlobalFilter } from "./GlobalFilter";
 import { ColumnFilter } from "./ColumnFilter";
 import { Checkbox } from "./Checkbox";

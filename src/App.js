@@ -1,7 +1,7 @@
 // import QRCode from "qrcode.react";
 import Record from "./pages/Record";
 import Home from "./pages/Home";
-import DashBoard from "./pages/DashBoard";
+import DashBoard from "./pages/Dashboard";
 import DashBoardUsers from "./components/DashBoardUsers";
 import DashBoardQR from "./components/DashBoardQR";
 import DashBoardCreateQr from "./components/DashBoardCreateQR";
