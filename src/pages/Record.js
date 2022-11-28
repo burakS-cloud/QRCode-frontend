@@ -1,8 +1,7 @@
-import React, { useRef, useState, useEffect, useLayoutEffect } from "react";
-import NavbarComp from "../components/NavbarComp";
+import React, { useRef, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Record = () => {
   const inputRef = useRef();
@@ -12,30 +11,35 @@ const Record = () => {
   const [videoURL, setVideoURL] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [isSaveButtonClicked, setIsSaveButtonClicked] = useState(false);
+  const [isDataSentToBackend, setIsDataSentToBackend] = useState(false);
+  let location = useLocation();
 
   let navigate = useNavigate();
 
   useEffect(() => {
     const sendParams = async () => {
       const res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/receiveParams`,
+        `http://localhost:3001/api/receiveParams`,
         {
-          qrparams: window.location.href.split("params=")[1],
+          qrparams: location.pathname.split("record")[1].slice(1),
         },
         {
           headers: { "Content-Type": "application/json" },
         }
       );
       if (res.data.length > 12) {
+        console.log(res.data);
         setVideoURL(res.data);
         setIsLoading(false);
-        // navigate(res.data);
-        window.location.assign(videoURL);
+        //navigate(res.data);
+        // window.location.assign(videoURL);
       } else {
         setError(res.data);
         setIsLoading(false);
       }
     };
+
     sendParams();
   }, [videoURL]);
 
@@ -51,6 +55,14 @@ const Record = () => {
   //   window.location.assign(videoURL);
   // }
 
+  let saveButtonAppears = () => {
+    if (isVideoSelected) {
+      return "block";
+    } else {
+      return "none";
+    }
+  };
+
   // console.log(videoRef.current);
   let nameInput = watch().name ? watch().name : "";
   let emailInput = watch().email ? watch().email : "";
@@ -58,6 +70,20 @@ const Record = () => {
   let url = window.location.pathname + `/?params=1555`; // normalde qr code okununca direkt olarak pathname'e eşit olcak
 
   let qrcodeID = url.substring(16, url.length);
+  console.log("videoURL:", videoURL);
+  console.log("error:", error);
+
+  console.log(
+    "location:",
+    typeof location.pathname.split("record")[1].slice(1)
+  );
+
+  const handleSaveButtonClick = () => {
+    if (isSaveButtonClicked === false) {
+      setIsSaveButtonClicked(true);
+    }
+  };
+  console.log("isvideoselected:", isVideoSelected);
 
   // This will be the actual params
 
@@ -83,16 +109,20 @@ const Record = () => {
                 user_name: data?.name,
               });
               const response = await axios.post(
-                `${process.env.REACT_APP_API_URL}/api/saveVideoQr`,
+                `http://localhost:3001/api/saveVideoQr`,
                 {
                   file: file,
                   form: { user_email: data?.email, user_name: data?.name },
-                  qrparams: window.location.href.split("params=")[1],
+                  qrparams: location.pathname.split("record")[1].slice(1),
                 },
                 {
                   headers: { "Content-Type": "multipart/form-data" },
                 }
               );
+              if (response.data) {
+                setIsDataSentToBackend(true);
+              }
+
               console.log(response.data);
             })}
             id="myform"
@@ -129,6 +159,11 @@ const Record = () => {
                   // });
                   // reader.readAsDataURL(file);
                 }}
+                // name="capture"
+                // placeholder="Record video"
+                // {...register("capture", {
+                //   required: "Please select or record a video",
+                // })}
                 ref={inputRef}
                 type="file"
                 id="capture"
@@ -199,36 +234,40 @@ const Record = () => {
                 ) : (
                   ""
                 )}
-                <button
-                  style={{
-                    marginTop: "1em",
-                    border: "none",
-                    outline: "none",
-                    padding: ".5rem 0",
-                    background: "black",
-                    color: "white",
-                    borderRadius: ".25rem",
-                  }}
-                >
-                  Save Video
-                </button>
               </div>
             ) : (
               ""
             )}
+
+            {/* <button>send req</button> */}
+            <button
+              onClick={() => handleSaveButtonClick()}
+              disabled={!file}
+              style={{
+                marginTop: "1em",
+                marginLeft: "7em",
+                border: "none",
+                outline: "none",
+                padding: ".5rem",
+                width: "250px",
+                display: !isDataSentToBackend ? "block" : "none",
+                // background: "black",
+                // color: "white",
+                borderRadius: ".25rem",
+              }}
+            >
+              Save Video
+            </button>
           </form>
         </div>
       );
     }
-    if (videoURL) return;
+    if (videoURL) {
+      window.location.assign(videoURL);
+    }
   };
 
-  return (
-    <>
-      <NavbarComp />
-      {conditionalRenderDecision()}
-    </>
-  );
+  return <>{conditionalRenderDecision()}</>;
 };
 
 export default Record;

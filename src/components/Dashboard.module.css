@@ -1,0 +1,63 @@
+.userNameAndLogoutDiv {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 1em;
+  margin-top: 1em;
+}
+
+.userName {
+  margin-right: 1em;
+  margin-top: 0.25em;
+}
+
+.logoutButton {
+  padding: 0.25rem;
+  background: black;
+  color: white;
+  border-radius: 5%;
+}
+
+.dashboardBtn {
+  text-decoration: none;
+  border: 1px solid black;
+  padding: 0.25rem;
+  background: black;
+  color: white;
+  border-radius: 5%;
+  margin-right: 3em;
+}
+
+.dashboardBtn:hover {
+  color: white;
+}
+
+.navigationBtnDiv {
+  margin-left: 5em;
+  margin-bottom: 5em;
+  display: flex;
+}
+
+.navigationBtnDiv:last-child {
+  margin-right: 0;
+}
+
+@media (max-width: 762px) {
+  .dashboardBtn {
+    margin-right: 0;
+  }
+  .navigationBtnDiv {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 580px) {
+  .userName {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .navigationBtnDiv {
+    margin-top: 1em;
+  }
+}
