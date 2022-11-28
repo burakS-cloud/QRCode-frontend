@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Record = () => {
   const inputRef = useRef();
@@ -14,8 +14,6 @@ const Record = () => {
   const [isSaveButtonClicked, setIsSaveButtonClicked] = useState(false);
   const [isDataSentToBackend, setIsDataSentToBackend] = useState(false);
   let location = useLocation();
-
-  let navigate = useNavigate();
 
   useEffect(() => {
     const sendParams = async () => {
@@ -41,6 +39,7 @@ const Record = () => {
     };
 
     sendParams();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [videoURL]);
 
   const {
@@ -55,21 +54,13 @@ const Record = () => {
   //   window.location.assign(videoURL);
   // }
 
-  let saveButtonAppears = () => {
-    if (isVideoSelected) {
-      return "block";
-    } else {
-      return "none";
-    }
-  };
-
   // console.log(videoRef.current);
-  let nameInput = watch().name ? watch().name : "";
-  let emailInput = watch().email ? watch().email : "";
+  // let nameInput = watch().name ? watch().name : "";
+  // let emailInput = watch().email ? watch().email : "";
 
   let url = window.location.pathname + `/?params=1555`; // normalde qr code okununca direkt olarak pathname'e eşit olcak
 
-  let qrcodeID = url.substring(16, url.length);
+  // let qrcodeID = url.substring(16, url.length);
   console.log("videoURL:", videoURL);
   console.log("error:", error);
 

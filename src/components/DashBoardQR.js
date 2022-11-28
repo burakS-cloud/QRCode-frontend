@@ -1,13 +1,6 @@
-import React, {
-  useLayoutEffect,
-  useEffect,
-  useState,
-  useMemo,
-  useRef,
-} from "react";
+import React, { useEffect, useState, useMemo, useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import axios from "axios";
-import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import {
   useTable,
@@ -40,13 +33,6 @@ const DashBoardQR = () => {
     componentRef.current.style.display = "none";
   };
 
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-    watch,
-  } = useForm();
-
   useEffect(() => {
     const requestQR = async () => {
       const res = await axios.get(`http://localhost:3001/api/getQRCodes`, {
@@ -66,11 +52,6 @@ const DashBoardQR = () => {
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => QRCodes, [QRCodes]);
   const IDS = useMemo(() => qrCodeIDS, [qrCodeIDS]);
-
-  let qrCodeIDs = QRCodes.map((item) => item.qrCode_ID);
-  // console.log(qrCodeIDs);
-
-  let dummyArr = [1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12];
 
   const defaultColumn = React.useMemo(
     () => ({
@@ -94,7 +75,6 @@ const DashBoardQR = () => {
     pageCount,
     setPageSize,
     setGlobalFilter,
-    rows,
     selectedFlatRows,
     prepareRow,
   } = useTable(
@@ -152,30 +132,9 @@ const DashBoardQR = () => {
     }
   );
 
-  let isButtonClicked = () => {
-    if (
-      window.confirm(
-        "Are you sure you want to save this thing into the database?"
-      )
-    ) {
-      // Save it!
-      console.log("Thing was saved to the database.");
-    } else {
-      // Do nothing!
-      console.log("Thing was not saved to the database.");
-    }
-  };
-
   const { globalFilter } = state;
   const { pageIndex, pageSize } = state;
-  let selectedFlatRowsIds = selectedFlatRows?.map((item) => +item?.id + 1);
-  // console.log("selectedFlatRowIds:", selectedFlatRowsIds);
-  // console.log(
-  //   "result of button of id 1 is clicked:",
-  //   selectedFlatRowsIds.includes(1)
-  // );
 
-  console.log("selectedFlatRows:", selectedFlatRows);
   return (
     <>
       <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />

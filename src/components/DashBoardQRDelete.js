@@ -5,17 +5,11 @@ import { useNavigate } from "react-router-dom";
 
 const DashBoardQRDelete = () => {
   const [QRCodes, setQRCodes] = useState([]);
-  const [qrCodeIDS, setQrCodeIDS] = useState([]);
   const [deleteResponse, setDeleteResponse] = useState("");
 
   let navigate = useNavigate();
 
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-    watch,
-  } = useForm();
+  const { handleSubmit } = useForm();
 
   useEffect(() => {
     const requestQR = async () => {
@@ -25,7 +19,6 @@ const DashBoardQRDelete = () => {
       if (res.data) {
         console.log(res.data);
         setQRCodes(res.data.codes);
-        setQrCodeIDS(res.data.codesIDS);
       } else {
         console.log("couldnt fetch qrcodes");
       }

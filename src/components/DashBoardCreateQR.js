@@ -6,12 +6,7 @@ const DashBoardCreateQR = () => {
   const [amount, setAmount] = useState(1);
   const [backendResponse, setBackendResponse] = useState("");
 
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-    watch,
-  } = useForm();
+  const { handleSubmit } = useForm();
 
   return (
     <>

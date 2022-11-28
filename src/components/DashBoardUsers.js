@@ -68,7 +68,6 @@ const DashBoardUsers = () => {
     pageCount,
     setPageSize,
     setGlobalFilter,
-    rows,
     selectedFlatRows,
     prepareRow,
   } = useTable(
@@ -131,12 +130,6 @@ const DashBoardUsers = () => {
 
   const { globalFilter } = state;
   const { pageIndex, pageSize } = state;
-  let selectedFlatRowsIds = selectedFlatRows?.map((item) => +item?.id + 1);
-  // console.log("selectedFlatRowIds:", selectedFlatRowsIds);
-  // console.log(
-  //   "result of button of id 1 is clicked:",
-  //   selectedFlatRowsIds.includes(1)
-  // );
 
   console.log("selectedFlatRows:", selectedFlatRows);
   return (
