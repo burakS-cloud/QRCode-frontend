@@ -18,7 +18,7 @@ const Record = () => {
   useEffect(() => {
     const sendParams = async () => {
       const res = await axios.post(
-        `http://localhost:3001/api/receiveParams`,
+        `https://qrcode-app.adaptable.app/api/receiveParams`,
         {
           qrparams: location.pathname.split("record")[1].slice(1),
         },
@@ -97,7 +97,7 @@ const Record = () => {
                 user_name: data?.name,
               });
               const response = await axios.post(
-                `http://localhost:3001/api/saveVideoQr`,
+                `https://qrcode-app.adaptable.app/api/saveVideoQr`,
                 {
                   file: file,
                   form: { user_email: data?.email, user_name: data?.name },

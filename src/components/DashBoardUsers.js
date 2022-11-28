@@ -31,9 +31,12 @@ const DashBoardUsers = () => {
 
   useLayoutEffect(() => {
     const requestQR = async () => {
-      const res = await axios.get(`http://localhost:3001/api/getUsedQRCodes`, {
-        headers: { "Content-Type": "application/json" },
-      });
+      const res = await axios.get(
+        `https://qrcode-app.adaptable.app/api/getUsedQRCodes`,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
       if (res.data) {
         console.log(res.data);
         setQRCodes(res.data);

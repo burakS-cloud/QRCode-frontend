@@ -16,7 +16,7 @@ const DashBoardCreateQR = () => {
           onSubmit={handleSubmit(async (data, event) => {
             event.preventDefault();
             const response = await axios.post(
-              `http://localhost:3001/api/CreateQR`,
+              `https://qrcode-app.adaptable.app/api/CreateQR`,
               {
                 amount: amount,
               },

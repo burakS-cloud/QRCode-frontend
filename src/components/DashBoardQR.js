@@ -35,9 +35,12 @@ const DashBoardQR = () => {
 
   useEffect(() => {
     const requestQR = async () => {
-      const res = await axios.get(`http://localhost:3001/api/getQRCodes`, {
-        headers: { "Content-Type": "application/json" },
-      });
+      const res = await axios.get(
+        `https://qrcode-app.adaptable.app/api/getQRCodes`,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
       if (res.data) {
         console.log(res.data);
         setQRCodes(res.data.codes);
