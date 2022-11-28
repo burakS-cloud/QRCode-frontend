@@ -46,7 +46,6 @@ const Record = () => {
     handleSubmit,
     register,
     formState: { errors },
-    watch,
   } = useForm();
 
   //Bu if bloğunun aq, re-render'ların sebebi %90 bu.
@@ -57,8 +56,6 @@ const Record = () => {
   // console.log(videoRef.current);
   // let nameInput = watch().name ? watch().name : "";
   // let emailInput = watch().email ? watch().email : "";
-
-  let url = window.location.pathname + `/?params=1555`; // normalde qr code okununca direkt olarak pathname'e eşit olcak
 
   // let qrcodeID = url.substring(16, url.length);
   console.log("videoURL:", videoURL);
