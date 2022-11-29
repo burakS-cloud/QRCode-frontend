@@ -9,6 +9,7 @@ import Login from "./components/Login";
 import NotFound from "./components/NotFound";
 import NavbarComp from "../src/components/NavbarComp";
 import DashBoardQRDelete from "./components/DashBoardQRDelete";
+import DashBoardUsedQRDelete from "./components/DashBoardUsedQRDelete";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { AuthProvider } from "./components/auth";
@@ -36,6 +37,10 @@ function App() {
             <Route
               path="qrcodes/deleteQR"
               element={<DashBoardQRDelete />}
+            ></Route>
+            <Route
+              path="qrcodes/deleteUsedQR"
+              element={<DashBoardUsedQRDelete />}
             ></Route>
             <Route path="createqr" element={<DashBoardCreateQr />}></Route>
           </Route>

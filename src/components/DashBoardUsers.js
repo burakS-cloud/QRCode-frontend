@@ -1,6 +1,7 @@
 import React, { useLayoutEffect, useState, useMemo, useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import {
   useTable,
   useSortBy,
@@ -17,6 +18,7 @@ import "./table.css";
 
 const DashBoardUsers = () => {
   const [QRCodes, setQRCodes] = useState([]);
+  let navigate = useNavigate();
 
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
@@ -97,7 +99,7 @@ const DashBoardUsers = () => {
             <div style={{ display: "flex", justifyContent: "space-around" }}>
               {/* <Checkbox {...row.getToggleRowSelectedProps()} /> */}
               <button
-                onClick={() => isButtonClicked()}
+                onClick={() => navigate("/dashboard/qrcodes/deleteUsedQR")}
                 style={{
                   background: "red",
                   color: "white",
@@ -117,19 +119,19 @@ const DashBoardUsers = () => {
     }
   );
 
-  let isButtonClicked = () => {
-    if (
-      window.confirm(
-        "Are you sure you want to save this thing into the database?"
-      )
-    ) {
-      // Save it!
-      console.log("Thing was saved to the database.");
-    } else {
-      // Do nothing!
-      console.log("Thing was not saved to the database.");
-    }
-  };
+  // let isButtonClicked = () => {
+  //   if (
+  //     window.confirm(
+  //       "Are you sure you want to save this thing into the database?"
+  //     )
+  //   ) {
+  //     // Save it!
+  //     console.log("Thing was saved to the database.");
+  //   } else {
+  //     // Do nothing!
+  //     console.log("Thing was not saved to the database.");
+  //   }
+  // };
 
   const { globalFilter } = state;
   const { pageIndex, pageSize } = state;
