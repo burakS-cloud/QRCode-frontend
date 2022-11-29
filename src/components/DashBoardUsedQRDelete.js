@@ -21,7 +21,7 @@ const DashBoardUsedQRDelete = () => {
       );
       if (res.data) {
         console.log(res.data);
-        setQRCodes(res.data.codes);
+        setQRCodes(res.data);
       } else {
         console.log("couldnt fetch qrcodes");
       }
@@ -71,7 +71,7 @@ const DashBoardUsedQRDelete = () => {
                     // setQRCodes(response.data.codes);
                     // setQrCodeIDS(response.data.codesIDS);
                     setDeleteResponse(response.data);
-                    navigate("/dashboard/qrcodes");
+                    navigate("/dashboard/users");
                   })}
                 >
                   <button
