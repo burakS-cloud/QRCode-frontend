@@ -234,7 +234,7 @@ const DashBoardQR = () => {
       <div style={{ display: "none" }} ref={componentRef}>
         {selectedFlatRows?.length > 0
           ? selectedFlatRows?.map((row) => {
-              let srcToPass = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=http://localhost:3000/record/${row.original._id}`;
+              let srcToPass = `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://smartqrcode.netlify.app/record/${row.original._id}`;
               return (
                 <>
                   <div
