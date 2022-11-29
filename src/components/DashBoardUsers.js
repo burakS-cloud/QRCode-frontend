@@ -99,7 +99,7 @@ const DashBoardUsers = () => {
             <div style={{ display: "flex", justifyContent: "space-around" }}>
               {/* <Checkbox {...row.getToggleRowSelectedProps()} /> */}
               <button
-                onClick={() => navigate("/dashboard/qrcodes/deleteUsedQR")}
+                onClick={() => navigate("/dashboard/users/deleteUsedQR")}
                 style={{
                   background: "red",
                   color: "white",

@@ -39,7 +39,7 @@ function App() {
               element={<DashBoardQRDelete />}
             ></Route>
             <Route
-              path="qrcodes/deleteUsedQR"
+              path="users/deleteUsedQR"
               element={<DashBoardUsedQRDelete />}
             ></Route>
             <Route path="createqr" element={<DashBoardCreateQr />}></Route>
