@@ -13,6 +13,11 @@ const Record = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isSaveButtonClicked, setIsSaveButtonClicked] = useState(false);
   const [isDataSentToBackend, setIsDataSentToBackend] = useState(false);
+  const [videoDurationMsg, setVideoDurationMsg] = useState(
+    "Your video can't be longer than 20 seconds."
+  );
+  const [duration, setDuration] = useState(0);
+  const [isVideoDurationValid, setIsVideoDurationValid] = useState(false);
   let location = useLocation();
 
   useEffect(() => {
@@ -52,6 +57,20 @@ const Record = () => {
   // if (videoURL !== "empty") {
   //   window.location.assign(videoURL);
   // }
+
+  const handleLoadedMetadata = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    console.log(`The video is ${video.duration} seconds long.`);
+    setDuration(Math.floor(video.duration));
+    if (video.duration === 0 || video.duration > 20) {
+      setVideoDurationMsg("Your video can't be longer than 20 seconds");
+      setIsVideoDurationValid(false);
+    } else {
+      setVideoDurationMsg("Your video is appropriate.");
+      setIsVideoDurationValid(true);
+    }
+  };
 
   // console.log(videoRef.current);
   // let nameInput = watch().name ? watch().name : "";
@@ -160,21 +179,31 @@ const Record = () => {
               />
             </div>
 
-            <p>
-              <video
-                style={{
-                  marginTop: "1em",
-                  marginLeft: "3em",
-                  border: "1px solid gray",
-                }}
-                width={400}
-                height={400}
-                ref={videoRef}
-                src=""
-                id="audio"
-                controls
-              ></video>
-            </p>
+            <div style={{ display: "flex" }}>
+              <p>
+                <video
+                  style={{
+                    marginTop: "1em",
+                    marginLeft: "3em",
+                    border: "1px solid gray",
+                  }}
+                  width={400}
+                  height={400}
+                  ref={videoRef}
+                  src=""
+                  id="audio"
+                  controls
+                  onLoadedMetadata={handleLoadedMetadata}
+                ></video>
+              </p>
+
+              <div style={{ position: "absolute", top: "13%", left: "12%" }}>
+                {/* {duration === 0 || duration > 20
+                  ? videoDurationMsg
+                  : "You're good to go"} */}
+                {videoDurationMsg}
+              </div>
+            </div>
 
             {isVideoSelected ? (
               <div
@@ -230,7 +259,7 @@ const Record = () => {
             {/* <button>send req</button> */}
             <button
               onClick={() => handleSaveButtonClick()}
-              disabled={!file}
+              disabled={!isVideoDurationValid}
               style={{
                 marginTop: "1em",
                 marginLeft: "7em",
