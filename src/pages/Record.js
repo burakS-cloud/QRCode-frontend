@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import RecordCSS from "./Record.module.css";
 
 const Record = () => {
   const inputRef = useRef();
@@ -105,7 +106,7 @@ const Record = () => {
     }
     if (error === "empty") {
       return (
-        <div>
+        <div className={RecordCSS.fullContainerDiv}>
           <form
             onSubmit={handleSubmit(async (data, event) => {
               event.preventDefault();
@@ -135,25 +136,27 @@ const Record = () => {
             id="myform"
             encType="multipart/form-data"
           >
-            <div style={{ marginLeft: "3em", marginTop: "1em" }}>
+            <div className={RecordCSS.recordVidDiv}>
               <label
+                className={RecordCSS.recordVidDivLabel}
                 onClick={() => setIsVideoSelected(true)}
-                style={{
-                  marginTop: ".2em",
-                  border: "1px solid black",
-                  background: "black",
-                  color: "white",
-                  padding: ".5rem",
-                  borderRadius: ".25rem",
-                  cursor: "pointer",
-                }}
+                // style={{
+                //   marginTop: ".2em",
+                //   border: "1px solid black",
+                //   background: "black",
+                //   color: "white",
+                //   padding: ".5rem",
+                //   borderRadius: ".25rem",
+                //   cursor: "pointer",
+                // }}
                 htmlFor="capture"
               >
                 Record Video
               </label>
 
               <input
-                style={{ display: "none" }}
+                className={RecordCSS.videoInputEl}
+                // style={{ display: "none" }}
                 onChange={(e) => {
                   videoRef.current.src = window.URL.createObjectURL(
                     inputRef.current.files[0]
@@ -179,42 +182,46 @@ const Record = () => {
               />
             </div>
 
-            <div style={{ display: "flex" }}>
-              <p>
-                <video
-                  style={{
-                    marginTop: "1em",
-                    marginLeft: "3em",
-                    border: "1px solid gray",
-                  }}
-                  width={400}
-                  height={400}
-                  ref={videoRef}
-                  src=""
-                  id="audio"
-                  controls
-                  onLoadedMetadata={handleLoadedMetadata}
-                ></video>
-              </p>
+            <div className={RecordCSS.videoContainer}>
+              <div className={RecordCSS.flexVideoContainer}>
+                <p>
+                  <video
+                    className={RecordCSS.videoEl}
+                    // style={{
+                    //   marginTop: "1em",
+                    //   marginLeft: "3em",
+                    //   border: "1px solid gray",
+                    // }}
+                    width={300}
+                    height={300}
+                    ref={videoRef}
+                    src=""
+                    id="audio"
+                    controls
+                    onLoadedMetadata={handleLoadedMetadata}
+                  ></video>
+                </p>
 
-              <div style={{ position: "absolute", top: "13%", left: "12%" }}>
-                {/* {duration === 0 || duration > 20
+                <div className={RecordCSS.videoMessageDiv}>
+                  {/* {duration === 0 || duration > 20
                   ? videoDurationMsg
                   : "You're good to go"} */}
-                {videoDurationMsg}
+                  {videoDurationMsg}
+                </div>
               </div>
             </div>
 
             {isVideoSelected ? (
               <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  width: "250px",
-                  marginLeft: "7em",
-                }}
+                className={RecordCSS.userInfoDiv}
+                // style={{
+                //   display: "flex",
+                //   flexDirection: "column",
+                //   width: "250px",
+                //   marginLeft: "7em",
+                // }}
               >
-                <label style={{ marginBottom: ".4em" }} htmlFor="name">
+                <label className={RecordCSS.nameLabel} htmlFor="name">
                   Full Name:
                 </label>
                 <input
@@ -227,12 +234,15 @@ const Record = () => {
                   })}
                 />
                 {errors.name ? (
-                  <p style={{ color: "red" }}>{errors.name.message}</p>
+                  <p className={RecordCSS.errorMessage}>
+                    {errors.name.message}
+                  </p>
                 ) : (
                   ""
                 )}
                 <label
-                  style={{ marginBottom: ".4em", marginTop: ".4em" }}
+                  className={RecordCSS.emailLabel}
+                  // style={{ marginBottom: ".4em", marginTop: ".4em" }}
                   htmlFor="email"
                 >
                   Email
@@ -247,7 +257,9 @@ const Record = () => {
                   })}
                 />
                 {errors.email ? (
-                  <p style={{ color: "red" }}>{errors.email.message}</p>
+                  <p className={RecordCSS.errorMessage}>
+                    {errors.email.message}
+                  </p>
                 ) : (
                   ""
                 )}
@@ -258,19 +270,20 @@ const Record = () => {
 
             {/* <button>send req</button> */}
             <button
+              className={RecordCSS.saveButton}
               onClick={() => handleSaveButtonClick()}
               disabled={!isVideoDurationValid}
               style={{
-                marginTop: "1em",
-                marginLeft: "7em",
-                border: "none",
-                outline: "none",
-                padding: ".5rem",
-                width: "250px",
+                // marginTop: "1em",
+                // marginLeft: "7em",
+                // border: "none",
+                // outline: "none",
+                // padding: ".5rem",
+                // width: "250px",
                 display: !isDataSentToBackend ? "block" : "none",
                 // background: "black",
                 // color: "white",
-                borderRadius: ".25rem",
+                // borderRadius: ".25rem",
               }}
             >
               Save Video

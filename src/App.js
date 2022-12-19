@@ -7,7 +7,7 @@ import DashBoardQR from "./components/DashBoardQR";
 import DashBoardCreateQr from "./components/DashBoardCreateQR";
 import Login from "./components/Login";
 import NotFound from "./components/NotFound";
-import NavbarComp from "../src/components/NavbarComp";
+// import NavbarComp from "../src/components/NavbarComp";
 import DashBoardQRDelete from "./components/DashBoardQRDelete";
 import DashBoardUsedQRDelete from "./components/DashBoardUsedQRDelete";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -19,7 +19,7 @@ function App() {
   return (
     <Router>
       <AuthProvider>
-        <NavbarComp />
+        {/* <NavbarComp /> */}
         <Routes>
           <Route path="/record/:id" element={<Record />}></Route>
           <Route path="/" element={<Home />}></Route>
