@@ -203,9 +203,9 @@ const Record = () => {
                 </p>
 
                 <div className={RecordCSS.videoMessageDiv}>
-                  {/* {duration === 0 || duration > 20
-                  ? videoDurationMsg
-                  : "You're good to go"} */}
+                  {duration === 0 || duration > 20
+                    ? videoDurationMsg
+                    : "You're good to go"}
                   {videoDurationMsg}
                 </div>
               </div>
